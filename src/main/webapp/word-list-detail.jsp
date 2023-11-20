@@ -253,7 +253,7 @@
 							</div>
 						</a>
 						</div>
-
+						
 						<!-- Earnings (Monthly) Card Example -->
 						<div class="col-xl-3 col-md-6 mb-4">
 						<a href="ClickWordListServlet?clickedwordlist=KaoYanluan_1">
@@ -290,6 +290,97 @@
 						</a>
 						</div>
 					</div>
+
+					<!-- DataTales Example -->
+					<div class="card shadow mb-4">
+						<div class="card-header py-3">
+							<h6 class="m-0 font-weight-bold text-primary">DataTables</h6>
+						</div>
+
+						<div class="card-body">
+							<div class="table-responsive">
+								<table class="table table-bordered" id="dataTable" width="100%"
+									cellspacing="0">
+
+									<thead>
+										<tr>
+											<th>EN</th>
+											<th>USphone</th>
+											<th>UKphone</th>
+											<th>CN</th>
+											<th>Proficiency</th>
+										</tr>
+									</thead>
+
+									<tfoot>
+										<tr>
+											<th>EN</th>
+											<th>USphone</th>
+											<th>UKphone</th>
+											<th>CN</th>
+											<th>Proficiency</th>
+										</tr>
+									</tfoot>
+									<tbody>
+									<%
+									int Uid = 1;
+									if(session.getAttribute("uid")!=null){
+										Uid = (int) session.getAttribute("uid");}
+									String thesaurusName = "CET4luan_1";
+									if(session.getAttribute("uid")!=null){
+										thesaurusName = (String) session.getAttribute("wordlistname");
+									}
+									System.out.print(thesaurusName);
+									session.removeAttribute("wordlistname");
+									
+									ThesaurusDaoImpl thesaurusDao = new ThesaurusDaoImpl();
+									List<Thesaurus> thesaurusList = thesaurusDao.listThesaurusByName(thesaurusName);
+									WordDaoImpl wordDao = new WordDaoImpl();
+									Word word = new Word();
+									NewWordDaoImpl newWordDao =new NewWordDaoImpl();	
+									NewWord newWord =new NewWord();
+									for (Thesaurus thesaurus : thesaurusList) {
+										word = wordDao.findWordById(thesaurus.getThesaurus_wid());
+										newWord = newWordDao.findNewWordByWidAndUid(thesaurus.getThesaurus_wid(), Uid);
+									%>
+										<tr>
+											<%
+											String word_en = word.getWord_en();
+											%>
+											<td><a
+												href="ClickWordServlet?clickedword=<%=word_en%>"> 
+												<% out.print(word_en); %>
+											</a></td>
+											<td>
+												<%
+												out.print(word.getUsphone());
+												%>
+											</td>
+											<td>
+												<%
+												out.print(word.getUkphone());
+												%>
+											</td>
+											<td>
+												<%
+												out.print(word.getWord_cn());
+												%>
+											</td>
+											<td>
+												<%
+												out.print(newWord.getNewword_proficiency());
+												%>
+											</td>
+										</tr>
+										<%
+										}
+										%>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+
 				</div>
 				<!-- /.container-fluid -->
 

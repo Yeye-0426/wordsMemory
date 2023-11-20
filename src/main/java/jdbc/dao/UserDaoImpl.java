@@ -21,7 +21,7 @@ public class UserDaoImpl implements UserDao{
 		int flg = 0;
 		try {
 			conn = DBUtils.getConnection();
-			String sql ="SELECT user_name, user_email, user_password, user_pepdom "
+			String sql ="SELECT user_id, user_name, user_email, user_password, user_pepdom "
 					+ "FROM users WHERE user_email = ? AND user_password = ?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, userEmail); 
@@ -211,14 +211,14 @@ public class UserDaoImpl implements UserDao{
 		User user = new User();
 		try {
 			conn = DBUtils.getConnection();
-			String sql ="SELECT user_name, user_email, user_password, user_pepdom "
+			String sql ="SELECT user_id, user_name, user_email, user_password, user_pepdom "
 					+ "FROM word_db.users WHERE user_email = ?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, user_email); 
 			rs = pstmt.executeQuery();
 
 	        if (rs.next()) {
-
+	        	user.setUser_id(rs.getInt("user_id")); 
 				user.setUser_name(rs.getString("user_name")); 
 				user.setUser_email(rs.getString("user_email")); 
 				user.setUser_password(rs.getString("user_password")); 

@@ -150,7 +150,7 @@
 						<a class="nav-link dropdown-toggle" href="#" id="userDropdown"
 							role="button" data-toggle="dropdown" aria-haspopup="true"
 							aria-expanded="false"> 
-							<%out.print(session.getAttribute("name"));%>
+							<%out.print(session.getAttribute("uname"));%>
 							<span class="mr-2 d-none d-lg-inline text-gray-600 small"></span>
 								<i class='far fa-user-circle fa-2x'></i>
 						</a> <!-- Dropdown - User Information -->
@@ -247,43 +247,39 @@
 									
 									<div class="card-body">
 										<h4 class="small font-weight-bold">
-											词库1 <span class="float-right">20%</span>
+											四级核心词 <span class="float-right">
+											<% int perCET4luan_1 = 0;
+											if(session.getAttribute("Count_CET4luan_1")!=null){
+											perCET4luan_1 = (int)session.getAttribute("Count_CET4luan_1");}%>
+											<%=perCET4luan_1%>%</span>
 										</h4>
 										<div class="progress mb-4">
 											<div class="progress-bar bg-danger" role="progressbar"
-												style="width: 20%" aria-valuenow="20" aria-valuemin="0"
+												style="width: <%=perCET4luan_1%>%" aria-valuenow="20" aria-valuemin="0"
 												aria-valuemax="100"></div>
 										</div>
 										<h4 class="small font-weight-bold">
-											词库2 <span class="float-right">40%</span>
+											六级核心词 <span class="float-right">
+											<% int perCET6luan_1 = 0;
+											if(session.getAttribute("Count_CET6luan_1")!=null){
+											perCET6luan_1 = (int)session.getAttribute("Count_CET6luan_1");}%>
+											<%=perCET6luan_1%>%</span>
 										</h4>
 										<div class="progress mb-4">
 											<div class="progress-bar bg-warning" role="progressbar"
-												style="width: 40%" aria-valuenow="40" aria-valuemin="0"
+												style="width: <%=perCET6luan_1%>%" aria-valuenow="40" aria-valuemin="0"
 												aria-valuemax="100"></div>
 										</div>
 										<h4 class="small font-weight-bold">
-											词库3 <span class="float-right">60%</span>
+											考研必考 <span class="float-right">
+											<% int perKaoYanluan_1 = 0;
+											if(session.getAttribute("Count_KaoYanluan_1")!=null){
+											perKaoYanluan_1 = (int)session.getAttribute("Count_KaoYanluan_1");}%>
+											<%=perKaoYanluan_1%>%</span>
 										</h4>
 										<div class="progress mb-4">
 											<div class="progress-bar" role="progressbar"
-												style="width: 60%" aria-valuenow="60" aria-valuemin="0"
-												aria-valuemax="100"></div>
-										</div>
-										<h4 class="small font-weight-bold">
-											词库4 <span class="float-right">80%</span>
-										</h4>
-										<div class="progress mb-4">
-											<div class="progress-bar bg-info" role="progressbar"
-												style="width: 80%" aria-valuenow="80" aria-valuemin="0"
-												aria-valuemax="100"></div>
-										</div>
-										<h4 class="small font-weight-bold">
-											词库5 <span class="float-right">Complete!</span>
-										</h4>
-										<div class="progress">
-											<div class="progress-bar bg-success" role="progressbar"
-												style="width: 100%" aria-valuenow="100" aria-valuemin="0"
+												style="width: <%=perKaoYanluan_1%>%" aria-valuenow="60" aria-valuemin="0"
 												aria-valuemax="100"></div>
 										</div>
 									</div>

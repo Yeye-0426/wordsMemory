@@ -38,13 +38,10 @@ public class WordDaoTest {
         // Test the addWord method of WordDao.
         Word word = new Word();
 		word.setWord_en("an"); 
-		word.setWord_soundmark("æn; ən");  
-		word.setWord_cn("一个（用于元音前）"); 
-		word.setWord_note("例句");  
+		word.setWord_soundmark("忙n; 蓹n");  
+		word.setWord_cn("涓�涓紙鐢ㄤ簬鍏冮煶鍓嶏級"); 
+		word.setWord_note("渚嬪彞");  
 		word.setWord_sound("an_sound");  
-		word.setWord_reviewtimes(2);  
-		word.setWord_forgettimes(1);  
-		word.setWord_proficiency(1); 
 		word.setWord_modificationtime("2023-11-08 19:40:01");
 		boolean res = wordDao.addWord(word);
 		assumeTrue(res);
@@ -58,9 +55,6 @@ public class WordDaoTest {
         word.setWord_cn("Updated Chinese");
         word.setWord_note("Updated Example");
         word.setWord_sound("Updated Sound");
-        word.setWord_reviewtimes(3);
-        word.setWord_forgettimes(2);
-        word.setWord_proficiency(2);
         word.setWord_modificationtime("2023-11-08 20:00:00");
         boolean res = wordDao.updateWord(word);
 
@@ -79,7 +73,7 @@ public class WordDaoTest {
     @Test
     public void testDeleteWord() {
         // Delete the word and check if the delete was successful
-        boolean res = wordDao.deleteWord("an");
+        boolean res = wordDao.deleteWordByEn("an");
 
         // Use assumeTrue to check if the assumption holds true
         assumeTrue(res);

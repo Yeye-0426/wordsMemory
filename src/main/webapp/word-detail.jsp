@@ -3,7 +3,9 @@
     import ="java.util.List"
     import ="java.util.ArrayList"
     import ="jdbc.entity.Word"
-    import ="jdbc.dao.WordDaoImpl"%>
+    import ="jdbc.dao.WordDaoImpl"
+    import ="jdbc.entity.Sentence"
+    import ="jdbc.dao.SentenceDaoImpl"%>
 <!DOCTYPE html>
 <html lang="cn">
 
@@ -181,48 +183,84 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-4 text-gray-800">Blank Page</h1>
-                    
+                    <h1 class="h3 mb-4 text-gray-800">Word Page</h1>              
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    	<%
+                    	Word word = (Word)session.getAttribute("clickword");
+                        if(word != null){
+                        	int wordId = word.getWord_id();
+                            String wordEn = word.getWord_en();
+                            SentenceDaoImpl sentenceDao = new SentenceDaoImpl();
+                           List<Sentence> sentencelist= sentenceDao.listSentenceByWid(wordId);
+                         %>
                                     
                                     <thead>
                                         <tr>
                                             <th>EN</th>
-                                            <th>Soundmark</th>
-                                            <th>CN</th>
-                                            <th>Proficiency</th>
-                                            <th>Note</th>
-                                            <th>Sound</th>
-                                        </tr>
-                                    </thead>
-                                    
-                                    <tfoot>
-                                        <tr>
-                                            <th>EN</th>
-                                            <th>Soundmark</th>
-                                            <th>CN</th>
-                                            <th>Proficiency</th>
-                                            <th>Note</th>
-                                            <th>Sound</th>
-                                        </tr>
-                                    </tfoot>
-                                    
-                                    <%Word word = (Word)session.getAttribute("clickword");
-                                    if(word != null){
-                                    	 %>
-                                    <tbody>
-                                    	<tr>
-                                        	<td><% out.print(word.getWord_en()); %> </td>
-                                            <td><% out.print(word.getWord_soundmark()); %> </td>
-											<td><% out.print(word.getWord_cn()); %> </td>
-											<td><% out.print(word.getWord_proficiency());%> </td>
-											<td><% out.print(word.getWord_note()); %> </td>
+											<th>CN</th>
+											<th>USphone</th>
+											<th>UKphone</th>
+										 </tr>
+									</thead>	
+									
+									<tbody>
+										<tr>
+											<td><% out.print(wordEn); %> </td>
+											<td><% out.print(word.getWord_cn() ); %> </td>
+											<!--有道发音接口-->
+											<audio id="audio1" preload="auto"> 
+											  <source src="https://dict.youdao.com/dictvoice?audio=<%=wordEn%>&type=1.mp3">
+											</audio>
+											<td>
+											<% out.print(word.getUsphone() ); %>
+											<i class='fas fa-headphones fa-sm' id="audio-player1" onclick="audio1.play()">
+											</i>
+											</td>
+                                            <audio id="audio2" preload="auto"> 
+											  <source src="https://dict.youdao.com/dictvoice?audio=<%=wordEn%>&type=2.mp3">
+											</audio>
+											<td>
+											<% out.print(word.getUkphone()); %> 
+											<i class='fas fa-headphones fa-sm' id="audio-player2" onclick="audio2.play()">
+											</i>
+											</td>
+											<!--edge浏览器TTS
 											<textarea rows="1" cols="1" id="txt" type="text" class="txt" form="speech-form" readonly="readonly" style="display:none">
-											<% out.print(word.getWord_en()); %></textarea>
+											<% // out.print(word.getWord_en()); %></textarea>
 											<td><button id="play" type="submit" form="speech-form" style="border: none;background:none;">
 											<i class='fas fa-headphones fa-sm'></button></td>
-									<% } %>
+											-->
+										</tr>
+									</tbody>
+									
+									
+									
+										
+									<thead>
+										<tr>
+											<th colspan="2">sentence_en</th>
+											<th colspan="2">sentence_cn</th>
                                     	</tr>
+                                    </thead>
+									<tbody>
+										<tr><% 
+											int len = sentencelist.size(); 
+											if(len!=0){
+												for(Sentence sen:sentencelist){
+													
+											%>
+											<td colspan="2">
+											<% out.print(sen.getSentence_en());  %>
+											</td>
+											<td colspan="2">
+											<% out.print(sen.getSentence_cn()); 
+												}
+											}
+											%>
+											</td>
+										</tr>
+									</tbody>
+								<% } %>
                                 </table>
 
                 </div>

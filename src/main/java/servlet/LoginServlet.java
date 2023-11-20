@@ -44,13 +44,15 @@ public class LoginServlet extends HttpServlet {
 			User user = userDao.finduserByEmail(uemail);
 			// 获取session对象
 			HttpSession session = request.getSession();
-			// 将用户名追加到session中
-			session.setAttribute("name", user.getUser_name());
-			
-			// 重定向到登陆成功页面
-			response.sendRedirect("/index.jsp");
+			// 将用户id和用户名追加到session中
+			int userId = user.getUser_id();
+			session.setAttribute("uname", user.getUser_name());
+			session.setAttribute("uid",userId);
+			// 跳转到词库统计 
+			request.setAttribute("uid",userId);
+			request.getRequestDispatcher("/ThesaurusServlet").forward(request, response);
 		} else {
-			response.sendRedirect("/login.jsp");
+			response.sendRedirect("/words/login.jsp");
 		}
 
 	}
@@ -96,10 +98,13 @@ public class LoginServlet extends HttpServlet {
 			User user = userDao.finduserByEmail(uemail);
 			// 获取session对象
 			HttpSession session = request.getSession();
-			// 将用户名追加到session中
-			session.setAttribute("name", user.getUser_name());
-			// 重定向到登陆成功页面
-			response.sendRedirect("/words/index.jsp");
+			// 将用户id和用户名追加到session中
+			int userId = user.getUser_id();
+			session.setAttribute("uname", user.getUser_name());
+			session.setAttribute("uid",userId);
+			// 跳转到词库统计 
+			request.setAttribute("uid",userId);
+			request.getRequestDispatcher("/ThesaurusServlet").forward(request, response);
 		} else {
 			System.out.print("登录失败");
 			// 重定向到登陆页面
