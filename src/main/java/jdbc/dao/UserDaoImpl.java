@@ -156,13 +156,14 @@ public class UserDaoImpl implements UserDao{
 					"user_name = ?, " +
 					"user_email = ?, " +
                     "user_password = ?, " +
-                    "user_pepdom = ?, " +
+                    "user_pepdom = ? " +
                     "WHERE user_id = ?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, user.getUser_name());
 			pstmt.setString(2, user.getUser_email());
 			pstmt.setString(3, user.getUser_password());
 			pstmt.setString(4, user.getUser_pepdom());
+			pstmt.setInt(5, user.getUser_id());
 			rows = pstmt.executeUpdate();
 		}catch (SQLException se) {
 			se.printStackTrace();

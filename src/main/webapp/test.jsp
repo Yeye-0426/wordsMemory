@@ -177,13 +177,42 @@
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
+                    
+                                <div id="myCard" class="card shadow mb-4">
+                                <div id="container"  class="card-body" >
+	                                <div id="face" class="card-body" >
+	                                    <p>Over a third of the population was estimated to have no _______ to the health service.</p>
+	                                </div>
+	                                <div class="my-2"></div>
+	                                <a onclick="handleFlip()" href="#" class="btn btn-info btn-icon-split">
+                                        <span class="text">选项1</span>
+                                    </a>
+	                                <a onclick="handleFlip()" href="#" class="btn btn-info btn-icon-split">
+                                        <span class="text">选项2</span>
+                                    </a>
+	                                <a onclick="handleFlip()" href="#" class="btn btn-info btn-icon-split">
+                                        <span class="text">选项3</span>
+                                    </a>
+	                                <a onclick="handleFlip()" href="#" class="btn btn-info btn-icon-split">
+                                        <span class="text">选项4</span>
+                                    </a>    
+	                                <div id="back" class="card-body" style="backface-visibility:hidden;transform: rotateY(180deg);">
+	                                <p>	
+			have access to sth.：  有权利、  机会进入(享用、  使用)…。句意：  据估计， 超过三分之一的人得不到健康服务。assessment：  估价， 评估； assignment：  分配； 职位， 工作； exception：  除外， 例外。
+			</p>
+	                                </div>
+                                </div>
+                            </div>
 
-                    <!-- Page Heading -->
-                    <h1 class="h3 mb-4 text-gray-800">Blank Page</h1>
 
                 </div>
                 <!-- /.container-fluid -->
-
+<script>
+const cardback = document.getElementById('back');
+function handleFlip() {
+	cardback.style.transform = 'rotateY(0deg)'
+};
+</script>
 
 
 

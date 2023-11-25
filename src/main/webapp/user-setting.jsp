@@ -14,7 +14,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>blank</title>
+<title>user-setting</title>
 
 <!-- Custom fonts for this template-->
 <link href="fontawesome-free/css/all.min.css" rel="stylesheet"
@@ -178,8 +178,62 @@
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
 
-                    <!-- Page Heading -->
-                    <h1 class="h3 mb-4 text-gray-800">Blank Page</h1>
+                    <div class="card shadow mb-4">
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-primary">用户设置</h6>
+                                </div>
+                                <div class="card-body">
+                                <form id="usersetting" action="UserSettingServlet" method="post">
+                                    <nav class="navbar navbar-light bg-light mb-4">
+                                        <a class="navbar-brand" >用户名</a>
+                                        <ul class="navbar-nav ml-auto"><input form="usersetting" name="user_id" placeholder="<%=session.getAttribute("uname") %>">
+                                        </ul>
+                                    </nav>
+                                    <nav class="navbar navbar-light bg-light mb-4">
+                                        <a class="navbar-brand" >邮箱</a>
+                                        <ul class="navbar-nav ml-auto"><input form="usersetting" name="user_email"placeholder="<%=session.getAttribute("uemail") %>">
+                                        </ul>
+                                    </nav>
+                                    <nav class="navbar navbar-light bg-light mb-4">
+                                        <a class="navbar-brand" >密码</a>
+                                        <ul class="navbar-nav ml-auto"><input form="usersetting" name="user_pass" placeholder="<%=session.getAttribute("upwd") %>">
+                                        </ul>
+                                    </nav>
+                                    
+                                    <div class="my-2"></div>
+                                    <nav class="navbar navbar-expand navbar-light bg-light mb-4">
+                                        <a class="navbar-brand" href="#">词库</a>
+                                        <ul class="navbar-nav ml-auto">
+                                            <li class="nav-item dropdown">
+                                                <input form="usersetting" list="word_list" name="word_list" placeholder="选择词库" class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <datalist id="word_list" >
+                                                    <option value="CET4luan_1" hidden="hidden">四级核心词</option>
+                                                    <option value="CET6luan_1" >六级核心词</option>
+                                                    <option value="KaoYanluan_1">考研必考</option>
+                                                </datalist>
+                                            </li>
+                                        </ul>
+                                    </nav>
+                                    
+                                    <div class="my-2"></div>
+                                    <button form="usersetting" type="submit" class="btn btn-success btn-icon-split">
+                                        <span class="icon text-white-50">
+                                            <i class="fas fa-check"></i>
+                                        </span>
+                                        <span class="text">确认</span>
+                                        
+                                    </button>
+                                    <button form="usersetting"  type="reset" class="btn btn-secondary btn-icon-split">
+                                        <span class="icon text-white-50">
+                                            <i class="fas fa-arrow-right"></i>
+                                        </span>
+                                        <span class="text">重置</span>
+                                    </button>
+                                </form>
+                                </div>
+                                
+                                
+                            </div>
 
                 </div>
                 <!-- /.container-fluid -->

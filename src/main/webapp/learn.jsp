@@ -179,14 +179,40 @@
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
 
-                    <!-- Page Heading -->
-                    <h1 class="h3 mb-4 text-gray-800">Blank Page</h1>
+                                <div class="card shadow mb-4">
+                                <div onclick="handleFlip()" class="card-body" >
+	                                <div id="face" class="card-body" >
+	                                    <p>英语+音标</p>
+	                                </div>    
+	                                <div id="back" class="card-body" style="backface-visibility:hidden;transform: rotateY(180deg);">
+	                                <p>中文</p>
+	                                </div>   
+                                <div class="my-2"></div>
+                                	<a href="#" class="btn btn-success btn-icon-split">
+                                        <span class="text">认识</span>
+                                    </a>
+                                    
+                                    <a href="#" class="btn btn-warning btn-icon-split">
+                                        <span class="text">模糊</span>
+                                    </a>
+                                    
+                                    <a href="#" class="btn btn-danger btn-icon-split">
+                                        <span class="text">忘记</span>
+                                    </a>
+                                </div>
+                            </div>
+
 
                 </div>
                 <!-- /.container-fluid -->
-
-
-
+<script>
+const cardback = document.getElementById('back');
+const flag = true
+function handleFlip() {
+	cardback.style.transform = this.flag ? 'rotateY(180deg)':''
+	      this.flag = !this.flag
+};
+</script>
 
             </div>
            <!-- End of Main Content -->

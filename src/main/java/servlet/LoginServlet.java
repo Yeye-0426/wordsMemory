@@ -48,6 +48,8 @@ public class LoginServlet extends HttpServlet {
 			int userId = user.getUser_id();
 			session.setAttribute("uname", user.getUser_name());
 			session.setAttribute("uid",userId);
+			session.setAttribute("uemail",uemail);
+			session.setAttribute("upwd",upwd);
 			// 跳转到词库统计 
 			request.setAttribute("uid",userId);
 			request.getRequestDispatcher("/ThesaurusServlet").forward(request, response);
@@ -102,6 +104,8 @@ public class LoginServlet extends HttpServlet {
 			int userId = user.getUser_id();
 			session.setAttribute("uname", user.getUser_name());
 			session.setAttribute("uid",userId);
+			session.setAttribute("uemail",uemail);
+			session.setAttribute("upwd",upwd);
 			// 跳转到词库统计 
 			request.setAttribute("uid",userId);
 			request.getRequestDispatcher("/ThesaurusServlet").forward(request, response);
