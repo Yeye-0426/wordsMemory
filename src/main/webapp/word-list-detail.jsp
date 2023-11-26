@@ -42,8 +42,7 @@
 			id="accordionSidebar">
 
 			<!-- Sidebar - Brand -->
-			<a
-				class="sidebar-brand d-flex align-items-center justify-content-center"
+			<a class="sidebar-brand d-flex align-items-center justify-content-center"
 				href="index.jsp">
 				<div class="sidebar-brand-icon rotate-n-15">
 					<i class="fas fa-laugh-wink"></i>
@@ -65,9 +64,9 @@
 			<hr class="sidebar-divider">
 
 			<!-- Nav Item - Pages Collapse Menu -->
-			<li class="nav-item active"><a class="nav-link" href="learn.jsp">
-					<i class="fas fa-fw fa-book-open"></i> <span>学习</span>
-			</a></li>
+			<li class="nav-item active"><a class="nav-link"
+				href="learn.jsp"> <i class="fas fa-fw fa-book-open"></i> <span>学习</span></a>
+			</li>
 
 			<!-- Nav Item - Pages Collapse Menu -->
 			<li class="nav-item active"><a class="nav-link" href="test.jsp">
@@ -109,15 +108,16 @@
 					</button>
 
 					<!-- Topbar Search -->
-					<form action="SearchServlet"
+					<form action="SearchServlet" 
 						class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
 						<div class="input-group">
-							<input type="text" name="searchword"
-								class="form-control bg-light border-0 small" placeholder="查找"
-								aria-label="Search" aria-describedby="basic-addon2">
-							<button class="btn btn-primary" type="submit">
-								<i class="fas fa-search fa-sm"></i>
-							</button>
+								<input type="text" name="searchword" 
+								class="form-control bg-light border-0 small"
+								placeholder="查找" aria-label="Search"
+								aria-describedby="basic-addon2">
+								<button class="btn btn-primary" type="submit">
+									<i class="fas fa-search fa-sm"></i>
+								</button>
 						</div>
 					</form>
 
@@ -149,18 +149,20 @@
 							</div></li>
 
 						<!-- Nav Item - User Information -->
-						<li class="nav-item dropdown no-arrow"><a
-							class="nav-link dropdown-toggle" href="#" id="userDropdown"
+						<li class="nav-item dropdown no-arrow">
+						<a class="nav-link dropdown-toggle" href="#" id="userDropdown"
 							role="button" data-toggle="dropdown" aria-haspopup="true"
-							aria-expanded="false"> <span
-								class="mr-2 d-none d-lg-inline text-gray-600 small">用户名</span> <i
-								class='far fa-user-circle fa-2x'></i>
+							aria-expanded="false"> 
+							<%out.print(session.getAttribute("uname"));%>
+							<span class="mr-2 d-none d-lg-inline text-gray-600 small"></span>
+								<i class='far fa-user-circle fa-2x'></i>
 						</a> <!-- Dropdown - User Information -->
 							<div
 								class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
 								aria-labelledby="userDropdown">
 								<a class="dropdown-item" href="user-setting.jsp"> <i
-									class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i> 设置
+									class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+									设置
 								</a>
 								<div class="dropdown-divider"></div>
 								<a class="dropdown-item" href="#" data-toggle="modal"
@@ -387,49 +389,48 @@
 			</div>
 			<!-- End of Main Content -->
 
-			<!-- Footer -->
-			<footer class="sticky-footer bg-white">
-				<div class="container my-auto">
-					<div class="copyright text-center my-auto">
-						<span>Copyright &copy; Word Remeber 2023</span>
+				<!-- Footer -->
+				<footer class="sticky-footer bg-white">
+					<div class="container my-auto">
+						<div class="copyright text-center my-auto">
+							<span>Copyright &copy; Word Remeber 2023</span>
+						</div>
 					</div>
-				</div>
-			</footer>
-			<!-- End of Footer -->
+				</footer>
+				<!-- End of Footer -->
+
+			</div>
+			<!-- End of Content Wrapper -->
 
 		</div>
-		<!-- End of Content Wrapper -->
+		<!-- End of Page Wrapper -->
 
-	</div>
-	<!-- End of Page Wrapper -->
-
-	<!-- Scroll to Top Button-->
-	<a class="scroll-to-top rounded" href="#page-top"> <i
-		class="fas fa-angle-up"></i>
-	</a>
-
-
-	<!-- Logout Modal-->
-	<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog"
-		aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">真的要退出登录吗？</h5>
-					<button class="close" type="button" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">×</span>
-					</button>
-				</div>
-				<div class="modal-body">如果您确定退出登录，请单击下面的“注销”按钮。</div>
-				<div class="modal-footer">
-					<button class="btn btn-secondary" type="button"
-						data-dismiss="modal">取消</button>
-					<a class="btn btn-primary" href="LogoutServlet">注销</a>
+		<!-- Scroll to Top Button-->
+		<a class="scroll-to-top rounded" href="#page-top"> <i
+			class="fas fa-angle-up"></i>
+		</a>
+		
+		<!-- Logout Modal-->
+		<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog"
+			aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">真的要退出登录吗？</h5>
+						<button class="close" type="button" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">×</span>
+						</button>
+					</div>
+					<div class="modal-body">如果您确定退出登录，请单击下面的“注销”按钮。</div>
+					<div class="modal-footer">
+						<button class="btn btn-secondary" type="button"
+							data-dismiss="modal">取消</button>
+						<a class="btn btn-primary" href ="LogoutServlet">注销</a>
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
 
 	<!-- Bootstrap core JavaScript-->
 	<script src="js/jquery.min.js"></script>

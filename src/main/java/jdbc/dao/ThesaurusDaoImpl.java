@@ -175,5 +175,28 @@ public class ThesaurusDaoImpl implements ThesaurusDao{
 		}
 		return thesauruslist; 
 	}
+	
+	@Override
+	public int countThesaurus(String thesaurus_name) {
+		Connection conn = null;
+		PreparedStatement pstmt = null; 
+		ResultSet rs = null;
+		int count = 0 ;
+		try {
+			conn = DBUtils.getConnection();
+			String sql ="SELECT count(*)  FROM thesaurus WHERE thesaurus_name = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, thesaurus_name); 
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				count = rs.getInt(1);
+				}
+		}catch (SQLException se) {
+			se.printStackTrace();
+		}finally { 
+			DBUtils.destroy(conn, pstmt, rs);
+		}
+		return count; 
+	}
 
 }

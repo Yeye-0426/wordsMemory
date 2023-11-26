@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"
     import ="jdbc.entity.Word"
-    import ="jdbc.dao.WordDaoImpl"%>
+    import ="jdbc.entity.NewWord"
+    import ="jdbc.dao.WordDaoImpl"
+    import ="jdbc.dao.NewWordDaoImpl"%>
 <!DOCTYPE html>
 <html lang="cn">
 
@@ -14,7 +16,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>blank</title>
+<title>learn</title>
 
 <!-- Custom fonts for this template-->
 <link href="fontawesome-free/css/all.min.css" rel="stylesheet"
@@ -174,43 +176,75 @@
 				</nav>
 				<!-- End of Topbar -->
 
-
-
                 <!-- Begin Page Content -->
+                
+                <%  if(session.getAttribute("NewWordId")==null||session.getAttribute("userWordList")==null){
+                		if(session.getAttribute("userWordList")==null){
+                			session.setAttribute("userWordList", "CET4luan_1");
+                		}
+						response.sendRedirect("LearnServlet");
+					}else{
+	                	NewWordDaoImpl newWordDao =new NewWordDaoImpl();
+	    				int newWordId = (int)session.getAttribute("NewWordId");
+	    				NewWord newWord = newWordDao.findNewWordById(newWordId);
+						WordDaoImpl wordDao = new WordDaoImpl();
+	                    Word word = wordDao.findWordById(newWord.getNewword_wid());
+	                    String wordEn = word.getWord_en();
+					
+                %>
+                <!--有道发音接口-->
+				<audio id="audio1" preload="auto"> 
+					<source src="https://dict.youdao.com/dictvoice?audio=<%=wordEn%>&type=1.mp3">
+				</audio>
+				<audio id="audio2" preload="auto"> 
+					<source src="https://dict.youdao.com/dictvoice?audio=<%=wordEn%>&type=2.mp3">
+				</audio>
                 <div class="container-fluid">
+                
 
                                 <div class="card shadow mb-4">
                                 <div onclick="handleFlip()" class="card-body" >
-	                                <div id="face" class="card-body" >
-	                                    <p>英语+音标</p>
+	                                <div id="face" class="card-body" onclick="handleFlipFace()" style="backface-visibility:hidden;transform: rotateY(0deg);">
+	                                    <p><%=wordEn%></p>
+	                                    <p>美：<%=word.getUsphone() %>
+	                                    	<i class='fas fa-headphones fa-sm' id="audio-player1" onclick="audio1.play()"></i>
+	                                    英：<%=word.getUkphone()%>
+	                                    	<i class='fas fa-headphones fa-sm' id="audio-player2" onclick="audio2.play()"></i>
+	                                    </p>
 	                                </div>    
-	                                <div id="back" class="card-body" style="backface-visibility:hidden;transform: rotateY(180deg);">
-	                                <p>中文</p>
+	                                <div id="back" class="card-body" onclick="handleFlipBack()" style="backface-visibility:hidden;transform: rotateY(180deg);">
+	                                	<p><%=word.getWord_cn() %></p>
 	                                </div>   
                                 <div class="my-2"></div>
-                                	<a href="#" class="btn btn-success btn-icon-split">
+                                	<a href="LearnServlet?wordProficiency=clear" class="btn btn-success btn-icon-split">
                                         <span class="text">认识</span>
                                     </a>
                                     
-                                    <a href="#" class="btn btn-warning btn-icon-split">
+                                    <a href="LearnServlet?wordProficiency=blur" class="btn btn-warning btn-icon-split">
                                         <span class="text">模糊</span>
                                     </a>
                                     
-                                    <a href="#" class="btn btn-danger btn-icon-split">
+                                    <a href="LearnServlet?wordProficiency=forget" class="btn btn-danger btn-icon-split">
                                         <span class="text">忘记</span>
                                     </a>
                                 </div>
                             </div>
 
-
+				<% } %>
                 </div>
                 <!-- /.container-fluid -->
 <script>
+const cardback = document.getElementById('face');
 const cardback = document.getElementById('back');
-const flag = true
-function handleFlip() {
-	cardback.style.transform = this.flag ? 'rotateY(180deg)':''
-	      this.flag = !this.flag
+const flag1 = true
+const flag2 = true
+function handleFlipFace() {
+	cardback.style.transform = this.flag1 ? 'rotateY(0deg)':''
+	      this.flag1 = !this.flag1
+};
+function handleFlipBack() {
+	cardback.style.transform = this.flag2 ? 'rotateY(180deg)':''
+	      this.flag2 = !this.flag2
 };
 </script>
 

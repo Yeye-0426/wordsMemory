@@ -53,15 +53,14 @@ public class NewWordDaoImpl implements NewWordDao {
 		try {
 			conn = DBUtils.getConnection();
 			String sql ="INSERT INTO newword(newword_wid, newword_uid, newword_reviewtimes, newword_forgettimes, "
-					+ "newword_proficiency, newword_modificationtime)"
-					+ "values(?,?,?,?,?,?)";
+					+ "newword_proficiency)"
+					+ "values(?,?,?,?,?)";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, newword.getNewword_wid());
 			pstmt.setInt(2, newword.getNewword_uid());
 			pstmt.setInt(3, newword.getNewword_reviewtimes());
 			pstmt.setInt(4, newword.getNewword_forgettimes());
 			pstmt.setInt(5, newword.getNewword_proficiency());
-			pstmt.setString(6, newword.getNewword_modificationtime());
 			rows = pstmt.executeUpdate();
 		}catch (SQLException se) {
 			se.printStackTrace();
@@ -106,8 +105,7 @@ public class NewWordDaoImpl implements NewWordDao {
 					"newword_uid = ?, " +
                     "newword_reviewtimes = ?, " +
                     "newword_forgettimes = ?, " +
-                    "newword_proficiency = ?, " +
-                    "newword_modificationtime = ?, " +
+                    "newword_proficiency = ? " +
                     "WHERE newword_id = ?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, newword.getNewword_wid());
@@ -115,8 +113,7 @@ public class NewWordDaoImpl implements NewWordDao {
 			pstmt.setInt(3, newword.getNewword_reviewtimes());
 			pstmt.setInt(4, newword.getNewword_forgettimes());
 			pstmt.setInt(5, newword.getNewword_proficiency());
-			pstmt.setString(6, newword.getNewword_modificationtime());
-			pstmt.setInt(7, newword.getNewword_id());
+			pstmt.setInt(6, newword.getNewword_id());
 			rows = pstmt.executeUpdate();
 		}catch (SQLException se) {
 			se.printStackTrace();
@@ -219,7 +216,7 @@ public class NewWordDaoImpl implements NewWordDao {
 			DBUtils.destroy(conn, pstmt, rs);
 		}
 		return newwordlist; 
-	}	
-
+	}
+	
 }
 

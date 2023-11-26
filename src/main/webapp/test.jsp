@@ -1,7 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"
     import ="jdbc.entity.Word"
-    import ="jdbc.dao.WordDaoImpl"%>
+    import ="jdbc.dao.WordDaoImpl"
+    import ="jdbc.entity.Exam"
+    import ="jdbc.dao.ExamDaoImpl"
+%>
 <!DOCTYPE html>
 <html lang="cn">
 
@@ -14,7 +17,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>blank</title>
+<title>test</title>
 
 <!-- Custom fonts for this template-->
 <link href="fontawesome-free/css/all.min.css" rel="stylesheet"
@@ -146,11 +149,12 @@
 							</div></li>
 
 						<!-- Nav Item - User Information -->
-						<li class="nav-item dropdown no-arrow"><a
-							class="nav-link dropdown-toggle" href="#" id="userDropdown"
+						<li class="nav-item dropdown no-arrow">
+						<a class="nav-link dropdown-toggle" href="#" id="userDropdown"
 							role="button" data-toggle="dropdown" aria-haspopup="true"
-							aria-expanded="false"> <span
-								class="mr-2 d-none d-lg-inline text-gray-600 small">用户名</span>
+							aria-expanded="false"> 
+							<%out.print(session.getAttribute("uname"));%>
+							<span class="mr-2 d-none d-lg-inline text-gray-600 small"></span>
 								<i class='far fa-user-circle fa-2x'></i>
 						</a> <!-- Dropdown - User Information -->
 							<div
@@ -176,44 +180,97 @@
 
 
                 <!-- Begin Page Content -->
+                <%  
+                	if(session.getAttribute("ExamId")==null){
+						response.sendRedirect("ExamServlet");
+					}else{
+						ExamDaoImpl ExamDao = new ExamDaoImpl();
+						int examId = (int)session.getAttribute("ExamId");
+						Exam exam = ExamDao.findById(examId);
+						
+						int ch = 0;
+						int right = exam.getRightindex();
+						
+                %>
                 <div class="container-fluid">
                     
                                 <div id="myCard" class="card shadow mb-4">
                                 <div id="container"  class="card-body" >
 	                                <div id="face" class="card-body" >
-	                                    <p>Over a third of the population was estimated to have no _______ to the health service.</p>
+	                                    <p><% out.print(exam.getQuestion()); %></p>
 	                                </div>
 	                                <div class="my-2"></div>
-	                                <a onclick="handleFlip()" href="#" class="btn btn-info btn-icon-split">
-                                        <span class="text">选项1</span>
+	                                <a id="chioce1" class="btn btn-info btn-icon-split">
+                                        <span class="text"><% out.print(exam.getChoice1()); %></span>
                                     </a>
-	                                <a onclick="handleFlip()" href="#" class="btn btn-info btn-icon-split">
-                                        <span class="text">选项2</span>
+	                                <a id="chioce2" class="btn btn-info btn-icon-split">
+                                        <span class="text"><%  out.print(exam.getChoice2()); %></span>
                                     </a>
-	                                <a onclick="handleFlip()" href="#" class="btn btn-info btn-icon-split">
-                                        <span class="text">选项3</span>
+	                                <a id="chioce3" class="btn btn-info btn-icon-split">
+                                        <span class="text"><%  out.print(exam.getChoice3()); %></span>
                                     </a>
-	                                <a onclick="handleFlip()" href="#" class="btn btn-info btn-icon-split">
-                                        <span class="text">选项4</span>
+	                                <a id="chioce4" class="btn btn-info btn-icon-split">
+                                        <span class="text"><%  out.print(exam.getChoice4()); %></span>
                                     </a>    
 	                                <div id="back" class="card-body" style="backface-visibility:hidden;transform: rotateY(180deg);">
-	                                <p>	
-			have access to sth.：  有权利、  机会进入(享用、  使用)…。句意：  据估计， 超过三分之一的人得不到健康服务。assessment：  估价， 评估； assignment：  分配； 职位， 工作； exception：  除外， 例外。
-			</p>
+	                                <p id="myParagraph"></p>
+	                                <p><%  out.print(exam.getExam_explain()); %></p>
 	                                </div>
+	                                <a href="ExamServlet?btn=previous" class="btn btn-success btn-icon-split">
+                                        <span class="text">上一题</span>
+                                    </a>
+	                                <a href="ExamServlet?btn=next" class="btn btn-success btn-icon-split">
+                                        <span class="text">下一题</span>
+                                    </a>
                                 </div>
                             </div>
-
+                	
 
                 </div>
                 <!-- /.container-fluid -->
 <script>
 const cardback = document.getElementById('back');
-function handleFlip() {
-	cardback.style.transform = 'rotateY(0deg)'
-};
-</script>
 
+var btn1 = document.getElementById("chioce1");
+var btn2 = document.getElementById("chioce2");
+var btn3 = document.getElementById("chioce3");
+var btn4 = document.getElementById("chioce4");
+
+var right = "<%=right%>";
+
+function myFunction(ch){
+	if(right==ch){
+		document.getElementById("myParagraph").innerHTML = "答对啦";
+	}
+	else{
+		document.getElementById("myParagraph").innerHTML = "答错了";
+	}
+}
+
+btn1.addEventListener('click',function(ch){
+	var ch = 1;
+	cardback.style.transform = 'rotateY(0deg)';
+	myFunction(ch);
+	}, false);
+btn2.addEventListener("click",function(ch){
+	var ch = 2;
+	cardback.style.transform = 'rotateY(0deg)';
+	myFunction(ch);
+	}, false);
+btn3.addEventListener("click",function(ch){
+	var ch = 3;
+	cardback.style.transform = 'rotateY(0deg)';
+	myFunction(ch);
+	}, false);
+btn4.addEventListener("click",function(ch){
+	var ch = 4;
+	cardback.style.transform = 'rotateY(0deg)';
+	myFunction(ch);
+	}, false);
+
+
+</script>
+					<% } %>
 
 
             </div>
@@ -256,7 +313,7 @@ function handleFlip() {
 					<div class="modal-footer">
 						<button class="btn btn-secondary" type="button"
 							data-dismiss="modal">取消</button>
-						<a class="btn btn-primary" href="login.jsp">注销</a>
+						<a class="btn btn-primary" href ="LogoutServlet">注销</a>
 					</div>
 				</div>
 			</div>

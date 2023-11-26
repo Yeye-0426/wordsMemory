@@ -41,6 +41,7 @@ public class LoginServlet extends HttpServlet {
 		// 判断用户名密码是否正确
 		UserDaoImpl userDao = new UserDaoImpl();
 		if (userDao.login(uemail, upwd)) {
+			System.out.println("登录成功");
 			User user = userDao.finduserByEmail(uemail);
 			// 获取session对象
 			HttpSession session = request.getSession();
@@ -54,6 +55,7 @@ public class LoginServlet extends HttpServlet {
 			request.setAttribute("uid",userId);
 			request.getRequestDispatcher("/ThesaurusServlet").forward(request, response);
 		} else {
+			System.out.println("登录失败");
 			response.sendRedirect("/words/login.jsp");
 		}
 
@@ -70,7 +72,7 @@ public class LoginServlet extends HttpServlet {
 		// 判断用户名密码是否正确
 		UserDaoImpl userDao = new UserDaoImpl();
 		if (userDao.login(uemail, upwd)) {
-			System.out.print("登录成功");
+			System.out.println("登录成功");
 			// 判断是否开启免登陆
 			if ("on".equals(remeber)) {
 				// 创建Cookie
@@ -110,7 +112,7 @@ public class LoginServlet extends HttpServlet {
 			request.setAttribute("uid",userId);
 			request.getRequestDispatcher("/ThesaurusServlet").forward(request, response);
 		} else {
-			System.out.print("登录失败");
+			System.out.println("登录失败");
 			// 重定向到登陆页面
 			response.sendRedirect("/words/login.jsp");
 		}

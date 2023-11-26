@@ -146,11 +146,12 @@
 							</div></li>
 
 						<!-- Nav Item - User Information -->
-						<li class="nav-item dropdown no-arrow"><a
-							class="nav-link dropdown-toggle" href="#" id="userDropdown"
+						<li class="nav-item dropdown no-arrow">
+						<a class="nav-link dropdown-toggle" href="#" id="userDropdown"
 							role="button" data-toggle="dropdown" aria-haspopup="true"
-							aria-expanded="false"> <span
-								class="mr-2 d-none d-lg-inline text-gray-600 small">用户名</span>
+							aria-expanded="false"> 
+							<%out.print(session.getAttribute("uname"));%>
+							<span class="mr-2 d-none d-lg-inline text-gray-600 small"></span>
 								<i class='far fa-user-circle fa-2x'></i>
 						</a> <!-- Dropdown - User Information -->
 							<div
@@ -186,17 +187,17 @@
                                 <form id="usersetting" action="UserSettingServlet" method="post">
                                     <nav class="navbar navbar-light bg-light mb-4">
                                         <a class="navbar-brand" >用户名</a>
-                                        <ul class="navbar-nav ml-auto"><input form="usersetting" name="user_id" placeholder="<%=session.getAttribute("uname") %>">
+                                        <ul class="navbar-nav ml-auto"><input form="usersetting" name="user_id" value="<%=session.getAttribute("uname") %>" placeholder="<%=session.getAttribute("uname") %>">
                                         </ul>
                                     </nav>
                                     <nav class="navbar navbar-light bg-light mb-4">
                                         <a class="navbar-brand" >邮箱</a>
-                                        <ul class="navbar-nav ml-auto"><input form="usersetting" name="user_email"placeholder="<%=session.getAttribute("uemail") %>">
+                                        <ul class="navbar-nav ml-auto"><input form="usersetting" name="user_email" value="<%=session.getAttribute("uemail") %>" placeholder="<%=session.getAttribute("uemail") %>">
                                         </ul>
                                     </nav>
                                     <nav class="navbar navbar-light bg-light mb-4">
                                         <a class="navbar-brand" >密码</a>
-                                        <ul class="navbar-nav ml-auto"><input form="usersetting" name="user_pass" placeholder="<%=session.getAttribute("upwd") %>">
+                                        <ul class="navbar-nav ml-auto"><input form="usersetting" name="user_pass" value="<%=session.getAttribute("upwd") %>" placeholder="<%=session.getAttribute("upwd") %>">
                                         </ul>
                                     </nav>
                                     
@@ -205,7 +206,7 @@
                                         <a class="navbar-brand" href="#">词库</a>
                                         <ul class="navbar-nav ml-auto">
                                             <li class="nav-item dropdown">
-                                                <input form="usersetting" list="word_list" name="word_list" placeholder="选择词库" class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <input form="usersetting" list="word_list" name="word_list" value="CET4luan_1" placeholder="选择词库" class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                 <datalist id="word_list" >
                                                     <option value="CET4luan_1" hidden="hidden">四级核心词</option>
                                                     <option value="CET6luan_1" >六级核心词</option>
@@ -281,7 +282,7 @@
 					<div class="modal-footer">
 						<button class="btn btn-secondary" type="button"
 							data-dismiss="modal">取消</button>
-						<a class="btn btn-primary" href="login.jsp">注销</a>
+						<a class="btn btn-primary" href ="LogoutServlet">注销</a>
 					</div>
 				</div>
 			</div>

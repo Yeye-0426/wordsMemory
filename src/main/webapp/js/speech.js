@@ -45,3 +45,17 @@ inputForm.onsubmit = function (event) {
 
   inputTxt.blur();
 };
+
+function myFunction(ch){
+	if(right==ch){
+		document.getElementById("myParagraph").innerHTML = "T" + ch +"r" + right;
+	}
+	else{
+		document.getElementById("myParagraph").innerHTML = "F" + ch +"r" + right;
+	}
+}
+
+btn1.addEventListener('click',function(ch){
+	cardback.style.transform = 'rotateY(0deg)';
+	myFunction(ch);
+	}, false);

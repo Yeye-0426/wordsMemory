@@ -236,7 +236,7 @@
 											<%=perCET4luan_1%>%</span>
 										</h4>
 										<div class="progress mb-4">
-											<div class="progress-bar bg-danger" role="progressbar"
+											<div class="progress-bar" role="progressbar"
 												style="width: <%=perCET4luan_1%>%" aria-valuenow="20" aria-valuemin="0"
 												aria-valuemax="100"></div>
 										</div>
@@ -248,7 +248,7 @@
 											<%=perCET6luan_1%>%</span>
 										</h4>
 										<div class="progress mb-4">
-											<div class="progress-bar bg-warning" role="progressbar"
+											<div class="progress-bar" role="progressbar"
 												style="width: <%=perCET6luan_1%>%" aria-valuenow="40" aria-valuemin="0"
 												aria-valuemax="100"></div>
 										</div>

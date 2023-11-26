@@ -43,15 +43,16 @@ public class ThesaurusServlet extends HttpServlet {
 		NewWord newWord =new NewWord();
 		
 		List<Thesaurus> thesaurusList = thesaurusDao.listThesaurusByName("CET4luan_1");
+		thesaurusCount = thesaurusDao.countThesaurus("CET4luan_1");
 		for (Thesaurus thesaurus : thesaurusList) {
 			newWord = newWordDao.findNewWordByWidAndUid(thesaurus.getThesaurus_wid(), Uid);
-			thesaurusCount++;
 			if(newWord.getNewword_proficiency()!=null&&newWord.getNewword_proficiency()>=20) {
 				Count++;
 			}
 		}
 		if(Count!=0) {
-			CET4luan_1 = thesaurusCount/Count;
+			CET4luan_1 = (Count*100)/thesaurusCount;
+			System.out.println(CET4luan_1);
 			session.setAttribute("Count_CET4luan_1", CET4luan_1);
 		}else {
 			session.setAttribute("Count_CET4luan_1", CET4luan_1);
@@ -60,15 +61,16 @@ public class ThesaurusServlet extends HttpServlet {
 		thesaurusCount = 0;
 		Count = 0;
 		thesaurusList = thesaurusDao.listThesaurusByName("CET6luan_1");
+		thesaurusCount = thesaurusDao.countThesaurus("CET6luan_1");
 		for (Thesaurus thesaurus : thesaurusList) {
 			newWord = newWordDao.findNewWordByWidAndUid(thesaurus.getThesaurus_wid(), Uid);
-			thesaurusCount++;
 			if(newWord.getNewword_proficiency()!=null&&newWord.getNewword_proficiency()>=20) {
 				Count++;
 			}
 		}
 		if(Count!=0) {
-			CET4luan_1 = thesaurusCount/Count;
+			CET6luan_1 = (Count*100)/thesaurusCount;
+			System.out.println(CET6luan_1);
 			session.setAttribute("Count_CET6luan_1", CET6luan_1);
 		}else {
 			session.setAttribute("Count_CET6luan_1", CET6luan_1);
@@ -77,15 +79,15 @@ public class ThesaurusServlet extends HttpServlet {
 		thesaurusCount = 0;
 		Count = 0;
 		thesaurusList = thesaurusDao.listThesaurusByName("KaoYanluan_1");
+		thesaurusCount = thesaurusDao.countThesaurus("KaoYanluan_1");
 		for (Thesaurus thesaurus : thesaurusList) {
 			newWord = newWordDao.findNewWordByWidAndUid(thesaurus.getThesaurus_wid(), Uid);
-			thesaurusCount++;
 			if(newWord.getNewword_proficiency()!=null&&newWord.getNewword_proficiency()>=20) {
 				Count++;
 			}
 		}
 		if(Count!=0) {
-			CET4luan_1 = thesaurusCount/Count;
+			KaoYanluan_1 = (Count*100)/thesaurusCount;
 			session.setAttribute("Count_KaoYanluan_1", KaoYanluan_1);
 		}else {
 			session.setAttribute("Count_KaoYanluan_1", KaoYanluan_1);

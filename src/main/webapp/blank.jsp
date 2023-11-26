@@ -30,28 +30,6 @@
 
 <body id="page-top">
 
-<script src="js/speech-example.js"></script>
-<form id="speech-form">
-      <label for="txt">Enter text</label>
-      <input id="txt" type="text" class="txt" />
-      <div>
-        <label for="rate">Rate</label
-        ><input type="range" min="0.5" max="2" value="1" step="0.1" id="rate" />
-        <div class="rate-value">1</div>
-        <div class="clearfix"></div>
-      </div>
-      <div>
-        <label for="pitch">Pitch</label
-        ><input type="range" min="0" max="2" value="1" step="0.1" id="pitch" />
-        <div class="pitch-value">1</div>
-        <div class="clearfix"></div>
-      </div>
-      <select></select>
-      <div class="controls">
-        <button id="play" type="submit">Play</button>
-      </div>
-</form>
-
 	<!-- Page Wrapper -->
 	<div id="wrapper">
 
@@ -116,7 +94,6 @@
 			<!-- Main Content -->
 			<div id="content">
 
-				<!-- Topbar -->
 				<!-- Topbar -->
 				<nav
 					class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
@@ -212,7 +189,7 @@
 
 
             </div>
-           <!-- End of Main Content -->
+          <!-- End of Main Content -->
 
 				<!-- Footer -->
 				<footer class="sticky-footer bg-white">
