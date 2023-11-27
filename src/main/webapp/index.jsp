@@ -1,7 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"
-    import ="jdbc.entity.Word"
-    import ="jdbc.dao.WordDaoImpl"%>
+	import="java.util.ArrayList" 
+	import="jdbc.entity.Word"
+	import="jdbc.entity.NewWord"
+	import="jdbc.entity.Thesaurus"
+	import="jdbc.dao.WordDaoImpl"
+	import="jdbc.dao.NewWordDaoImpl"
+	import="jdbc.dao.ThesaurusDaoImpl"%>
 <!DOCTYPE html>
 <html lang="cn">
 
@@ -181,53 +186,72 @@
 
 				<!-- Begin Page Content -->
 				<div class="container-fluid">
+				
+					<!-- Content Row -->
+					<div class="row">
+					
+                        <!-- Earnings (Monthly) Card Example -->
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-primary shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <table class="col mr-2">
+                                        <tr>
+                                            <td class="text-s font-weight-bold text-primary text-uppercase mb-1">用户:</td>
+                                            <td class="h5 mb-0 font-weight-bold text-gray-800"><%=session.getAttribute("uname") %></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-s font-weight-bold text-primary text-uppercase mb-1">邮箱:</td>
+                                            <td class="h5 mb-0 font-weight-bold text-gray-800"><%=session.getAttribute("uemail") %></td>
+                                        </tr>
+                                        </table>
+                                        <div class="col-auto">
+                                       		<i class="fas fa-user fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Earnings (Monthly) Card Example -->
+                        <%  if(session.getAttribute("userWordList")==null){
+                        	session.setAttribute("userWordList", "CET4luan_1");
+                        }
+                		%>
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-primary shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <table class="col mr-2">
+                                        <tr><td><div class="h5"></div></td></tr>
+                                        <tr>
+                                            <td class="text-s font-weight-bold text-primary text-uppercase mb-1">当前词库:</td>
+                                            <td class="h5 mb-0 font-weight-bold text-gray-800"><%=session.getAttribute("userWordList") %></td>
+                                        </tr>
+                                        </table>
+                                        <div class="col-auto">
+                                        	<i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
 					<!-- Content Row -->
 					<div class="row">
-
-						<!-- Content Row -->
-
-						<div class="row">
-							
-							<!-- Pie Chart -->
-							<div class="col-lg-11">
-								<div class="card shadow mb-4">
-									<!-- Card Header - Dropdown -->
-									
-									<div
-										class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-										<h6 class="m-0 font-weight-bold text-primary">本月学习情况</h6>
-									</div>
-									<!-- Card Body -->
-									<div class="card-body">
-										<div class="chart-pie pt-4 pb-2">
-											<canvas id="myPieChart"></canvas>
-										</div>
-										<div class="mt-4 text-center small">
-											<span class="mr-2"> <i
-												class="fas fa-circle text-primary"></i> 学习天数
-											</span> <span class="mr-2"> <i
-												class="fas fa-circle text-success"></i> 休息天数
-											</span> <span class="mr-2"> <i
-												class="fas fa-circle text-info"></i> 剩余天数
-											</span>
-										</div>
-									</div>
-								</div>
-							</div>
-						
+					
 						<!-- Content Column -->
-							<div class="col-lg-11">
+						<div class="col-lg-11">
 
-								<!-- Project Card Example -->
-								<div class="card shadow mb-4">
-								<div
-										class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+							<!-- Project Card Example -->
+							<div class="card shadow mb-4">
+								<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
 										<h6 class="m-0 font-weight-bold text-primary">
 											词库进度</h6>
-									</div>
+								</div>
 									
-									<div class="card-body">
+								<div class="card-body">
 										<h4 class="small font-weight-bold">
 											四级核心词 <span class="float-right">
 											<% int perCET4luan_1 = 0;
@@ -264,11 +288,10 @@
 												style="width: <%=perKaoYanluan_1%>%" aria-valuenow="60" aria-valuemin="0"
 												aria-valuemax="100"></div>
 										</div>
-									</div>
 								</div>
 							</div>
-							
 						</div>
+					
 					</div>
 					<!-- /.container-fluid -->
 
