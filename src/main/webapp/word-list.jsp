@@ -18,7 +18,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>word-list</title>
+<title>word list</title>
 
 <!-- Custom fonts for this template-->
 <link href="fontawesome-free/css/all.min.css" rel="stylesheet"

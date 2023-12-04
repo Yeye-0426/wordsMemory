@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import jdbc.entity.NewWord;
+import jdbc.entity.Word;
 import jdbc.utils.DBUtils;
 
 public class NewWordDaoImpl implements NewWordDao {
@@ -218,5 +219,38 @@ public class NewWordDaoImpl implements NewWordDao {
 		return newwordlist; 
 	}
 	
+	@Override
+	public List<NewWord> NewwordAndThesaurus(int newword_uid,String thesaurus_name) {
+		Connection conn = null;
+		PreparedStatement pstmt = null; 
+		ResultSet rs = null;
+		List<NewWord> newwordlist = new ArrayList<NewWord>();
+		try {
+			conn = DBUtils.getConnection();
+			String sql = "SELECT newword_id, newword_wid, newword_uid, newword_reviewtimes, newword_forgettimes, "
+					+ "newword_proficiency, newword_modificationtime FROM thesaurus as t, newword as n "
+					+ "WHERE n.newword_wid = t.thesaurus_wid AND newword_uid = ? AND thesaurus_name=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, newword_uid);
+			pstmt.setString(2, thesaurus_name);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				NewWord newword = new NewWord();
+				newword.setNewword_id(rs.getInt("newword_id"));
+				newword.setNewword_wid(rs.getInt("newword_wid"));
+				newword.setNewword_uid(rs.getInt("newword_uid"));
+				newword.setNewword_reviewtimes(rs.getInt("newword_reviewtimes"));
+				newword.setNewword_forgettimes(rs.getInt("newword_forgettimes"));
+				newword.setNewword_proficiency(rs.getInt("newword_proficiency"));
+				newword.setNewword_modificationtime(rs.getString("newword_modificationtime"));
+				newwordlist.add(newword); 
+				}
+		}catch (SQLException se) {
+			se.printStackTrace();
+		}finally { 
+			DBUtils.destroy(conn, pstmt, rs);
+		}
+		return newwordlist; 
+	}
 }
 

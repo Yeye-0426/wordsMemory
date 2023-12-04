@@ -30,8 +30,10 @@ public class ClickWordListServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		session.setAttribute("wordlistname", wordlistname);
 		
-		//重定向页面
-		response.sendRedirect("/words/word-list-detail.jsp");
+		request.getRequestDispatcher("/PageToWordList").forward(request, response);
+		
+//		//重定向页面
+//		response.sendRedirect("/words/word-list-detail.jsp");
 	}
 
 }

@@ -229,5 +229,33 @@ public class WordDaoImpl implements WordDao {
 			return wordlist; 
 		}
 
+		@Override
+		public List<Word> WordAndThesaurus(String thesaurus_name) {
+			Connection conn = null;
+			PreparedStatement pstmt = null; 
+			ResultSet rs = null;
+			List<Word> wordlist = new ArrayList<Word>();
+			try {
+				conn = DBUtils.getConnection();
+				String sql = "SELECT word_id, word_en, usphone, ukphone, word_cn FROM thesaurus as t, words as w "
+						+ "WHERE t.thesaurus_wid=w.word_id AND thesaurus_name=? ";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, thesaurus_name);
+				rs = pstmt.executeQuery();
+				while(rs.next()) {
+					Word word = new Word();
+					word.setWord_id(rs.getInt("word_id"));
+					word.setWord_en(rs.getString("word_en")); 
+					word.setUsphone(rs.getString("usphone")); 
+					word.setUkphone(rs.getString("ukphone"));
+					word.setWord_cn(rs.getString("word_cn"));  
+					wordlist.add(word); 
+					}
+			}catch (SQLException se) {
+				se.printStackTrace();
+			}finally { 
+				DBUtils.destroy(conn, pstmt, rs);
+			}
+			return wordlist;
+		}
 }
-

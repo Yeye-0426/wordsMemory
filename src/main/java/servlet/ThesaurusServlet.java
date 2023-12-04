@@ -44,9 +44,10 @@ public class ThesaurusServlet extends HttpServlet {
 		
 		List<Thesaurus> thesaurusList = thesaurusDao.listThesaurusByName("CET4luan_1");
 		thesaurusCount = thesaurusDao.countThesaurus("CET4luan_1");
-		for (Thesaurus thesaurus : thesaurusList) {
-			newWord = newWordDao.findNewWordByWidAndUid(thesaurus.getThesaurus_wid(), Uid);
-			if(newWord.getNewword_proficiency()!=null&&newWord.getNewword_proficiency()>=20) {
+		List<NewWord> newWordList = newWordDao.NewwordAndThesaurus(Uid, "CET4luan_1");
+		for (NewWord n : newWordList) {
+			
+			if(n.getNewword_proficiency()!=null&&n.getNewword_proficiency()>=20) {
 				Count++;
 			}
 		}

@@ -13,4 +13,5 @@ public interface WordDao {
 	public Word findWordById(Integer word_id);
 	public Word findWordByEn(String word_en);
 	public List<Word> findWordByEnFuzzy(String keyword);
+	public List<Word> WordAndThesaurus(String thesaurus_name);
 }

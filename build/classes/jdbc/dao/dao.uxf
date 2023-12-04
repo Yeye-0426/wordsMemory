@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="15.1.0">
+  <zoom_level>4</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>652</x>
+      <y>148</y>
+      <w>144</w>
+      <h>92</h>
+    </coordinates>
+    <panel_attributes>jdbc.dao::ExamDaoImpl
+--
+--
++add(Exam exam): int
++update(Exam exam): int
++delete(int id): int
++findById(int exam_id): Exam
++findByType(int exam_type): List&lt;Exam&gt;
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>364</x>
+      <y>140</y>
+      <w>252</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>jdbc.dao::NewWordDaoImpl
+--
+--
++listAll(): List&lt;NewWord&gt;
++addNewWord(NewWord newword): boolean
++deleteNewWord(Integer newword_id): boolean
++updateNewWord(NewWord newword): boolean
++findNewWordById(Integer newword_id): NewWord
++findNewWordByWidAndUid(Integer newword_wid, Integer newword_uid): NewWord
++listNewWordByUid(Integer newword_uid): List&lt;NewWord&gt;
++NewwordAndThesaurus(int newword_uid, String thesaurus_name): List&lt;NewWord&gt;
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>140</x>
+      <y>172</y>
+      <w>192</w>
+      <h>76</h>
+    </coordinates>
+    <panel_attributes>jdbc.dao::SentenceDaoImpl
+--
+--
++listAll(): List&lt;Sentence&gt;
++addSentence(Sentence sentence): boolean
++deleteSentence(Integer sentence_id): boolean
++updateSentence(Sentence sentence): boolean
++findSentenceById(Integer sentence_id): Sentence
++listSentenceByWid(Integer sentence_wid): List&lt;Sentence&gt;
++listSentenceByWen(String sentence_wen): List&lt;Sentence&gt;
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>380</x>
+      <y>436</y>
+      <w>208</w>
+      <h>88</h>
+    </coordinates>
+    <panel_attributes>jdbc.dao::ThesaurusDaoImpl
+--
+--
++listAll(): List&lt;Thesaurus&gt;
++addThesaurus(Thesaurus thesaurus): boolean
++deleteThesaurus(Integer thesaurus_id): boolean
++updateThesaurus(Thesaurus thesaurus): boolean
++findThesaurusById(Integer thesaurus_id): Thesaurus
++listThesaurusByName(String thesaurus_name): List&lt;Thesaurus&gt;
++countThesaurus(String thesaurus_name): int
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>636</x>
+      <y>432</y>
+      <w>180</w>
+      <h>96</h>
+    </coordinates>
+    <panel_attributes>jdbc.dao::UserDaoImpl
+--
+--
++login(String userEmail, String userPassword): boolean
++register(User user): boolean
++listAll(): List&lt;User&gt;
++adduser(User user): boolean
++deleteuser(Integer user_id): boolean
++updateuser(User user): boolean
++finduserById(Integer user_id): User
++finduserByEmail(String user_email): User
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>188</x>
+      <y>436</y>
+      <w>152</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>jdbc.dao::WordDaoImpl
+--
+--
++listAll(): List&lt;Word&gt;
++addWord(Word word): boolean
++deleteWordById(Integer word_id): boolean
++deleteWordByEn(String word_en): boolean
++updateWordByEn(Word word): boolean
++findWordById(Integer word_id): Word
++findWordByEn(String word_en): Word
++findWordByEnFuzzy(String keyword): List&lt;Word&gt;
++WordAndThesaurus(String thesaurus_name): List&lt;Word&gt;
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>404</x>
+      <y>316</y>
+      <w>168</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>jdbc.utils::DBUtils
+--
+--
++getConnection(): Connection
++destroy(Connection conn, Statement pstmt, ResultSet rs): void
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>552</x>
+      <y>236</y>
+      <w>196</w>
+      <h>88</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;..</panel_attributes>
+    <additional_attributes>10.0;200.0;470.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>488</x>
+      <y>236</y>
+      <w>16</w>
+      <h>88</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;..</panel_attributes>
+    <additional_attributes>10.0;200.0;20.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>248</x>
+      <y>244</y>
+      <w>188</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;..</panel_attributes>
+    <additional_attributes>450.0;180.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>260</x>
+      <y>368</y>
+      <w>180</w>
+      <h>76</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;..</panel_attributes>
+    <additional_attributes>430.0;10.0;10.0;170.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>480</x>
+      <y>368</y>
+      <w>12</w>
+      <h>76</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;..</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;170.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>564</x>
+      <y>368</y>
+      <w>168</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;..</panel_attributes>
+    <additional_attributes>10.0;10.0;400.0;160.0</additional_attributes>
+  </element>
+</diagram>

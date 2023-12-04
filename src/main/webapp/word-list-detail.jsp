@@ -18,7 +18,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>word-list</title>
+<title>word list detail</title>
 
 <!-- Custom fonts for this template-->
 <link href="fontawesome-free/css/all.min.css" rel="stylesheet"
@@ -310,7 +310,6 @@
 											<th>USphone</th>
 											<th>UKphone</th>
 											<th>CN</th>
-											<th>Proficiency</th>
 										</tr>
 									</thead>
 
@@ -320,30 +319,20 @@
 											<th>USphone</th>
 											<th>UKphone</th>
 											<th>CN</th>
-											<th>Proficiency</th>
 										</tr>
 									</tfoot>
 									<tbody>
 									<%
-									int Uid = 1;
-									if(session.getAttribute("uid")!=null){
-										Uid = (int) session.getAttribute("uid");}
-									String thesaurusName = "CET4luan_1";
-									if(session.getAttribute("uid")!=null){
-										thesaurusName = (String) session.getAttribute("wordlistname");
+									int currPage = 1;
+									if(session.getAttribute("tableServlet")!=null){
+										currPage = (int)session.getAttribute("tableServlet");
 									}
-									System.out.print(thesaurusName);
-									session.removeAttribute("wordlistname");
-									
-									ThesaurusDaoImpl thesaurusDao = new ThesaurusDaoImpl();
-									List<Thesaurus> thesaurusList = thesaurusDao.listThesaurusByName(thesaurusName);
-									WordDaoImpl wordDao = new WordDaoImpl();
-									Word word = new Word();
-									NewWordDaoImpl newWordDao =new NewWordDaoImpl();	
-									NewWord newWord =new NewWord();
-									for (Thesaurus thesaurus : thesaurusList) {
-										word = wordDao.findWordById(thesaurus.getThesaurus_wid());
-										newWord = newWordDao.findNewWordByWidAndUid(thesaurus.getThesaurus_wid(), Uid);
+									System.out.print(currPage);
+									List<Word> wordList = new ArrayList<>();
+									if(session.getAttribute("wordList")!=null){
+										wordList = (List<Word>)session.getAttribute("wordList");
+									}
+									for (Word word : wordList) {
 									%>
 										<tr>
 											<%
@@ -366,11 +355,6 @@
 											<td>
 												<%
 												out.print(word.getWord_cn());
-												%>
-											</td>
-											<td>
-												<%
-												out.print(newWord.getNewword_proficiency());
 												%>
 											</td>
 										</tr>

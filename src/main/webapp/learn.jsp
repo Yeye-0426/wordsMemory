@@ -203,16 +203,17 @@
                 
 
                                 <div class="card shadow mb-4">
-                                <div onclick="handleFlip()" class="card-body" >
-	                                <div id="face" class="card-body" onclick="handleFlipFace()" style="backface-visibility:hidden;transform: rotateY(0deg);">
+                                <div class="card-body" >
+	                                <div id="face" class="card-body" style="backface-visibility:hidden;transform: rotateY(0deg);">
 	                                    <p><%=wordEn%></p>
 	                                    <p>美：<%=word.getUsphone() %>
 	                                    	<i class='fas fa-headphones fa-sm' id="audio-player1" onclick="audio1.play()"></i>
 	                                    英：<%=word.getUkphone()%>
 	                                    	<i class='fas fa-headphones fa-sm' id="audio-player2" onclick="audio2.play()"></i>
 	                                    </p>
-	                                </div>    
-	                                <div id="back" class="card-body" onclick="handleFlipBack()" style="backface-visibility:hidden;transform: rotateY(180deg);">
+	                                </div>
+	                                <hr />  
+	                                <div id="back" class="card-body" style="backface-visibility:hidden;transform: rotateY(180deg);">
 	                                	<p><%=word.getWord_cn() %></p>
 	                                </div>   
                                 <div class="my-2"></div>
@@ -234,18 +235,18 @@
                 </div>
                 <!-- /.container-fluid -->
 <script>
-const cardback = document.getElementById('face');
+const cardface = document.getElementById('face');
 const cardback = document.getElementById('back');
 const flag1 = true
 const flag2 = true
-function handleFlipFace() {
-	cardback.style.transform = this.flag1 ? 'rotateY(0deg)':''
+cardface.addEventListener('click',function(){
+	cardback.style.transform = this.flag1 ? 'rotateY(0deg)':'rotateY(180deg)'
 	      this.flag1 = !this.flag1
-};
-function handleFlipBack() {
-	cardback.style.transform = this.flag2 ? 'rotateY(180deg)':''
+	}, false);
+cardback.addEventListener('click',function(){
+	cardface.style.transform = this.flag2 ? 'rotateY(180deg)':'rotateY(0deg)'
 	      this.flag2 = !this.flag2
-};
+	}, false);
 </script>
 
             </div>

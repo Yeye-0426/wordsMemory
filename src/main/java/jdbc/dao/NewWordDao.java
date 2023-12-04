@@ -12,4 +12,5 @@ public interface NewWordDao {
 	public NewWord findNewWordById(Integer newword_id);
 	public NewWord findNewWordByWidAndUid(Integer newword_wid,Integer newword_uid);
 	public List<NewWord> listNewWordByUid(Integer newword_uid);
+	public List<NewWord> NewwordAndThesaurus(int newword_uid, String thesaurus_name);
 }
